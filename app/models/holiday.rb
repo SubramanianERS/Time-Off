@@ -3,7 +3,8 @@ class Holiday < ApplicationRecord
         {
           :title => self.title,
           :start => self.start_date,
-          :end => self.end_date
+          :end => self.end_date,
+          :color => 'blue'
         }
     end
 end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'sessions/new'
+  get '/events', to: 'event#all'
+  post '/event', to: 'event#create'
   get '/holidays', to: 'holidays#all'
   get '/signUp' , to: 'users#signUp'
   get '/login', to: 'sessions#new'
@@ -7,6 +9,12 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/calendar', to: 'calendar#show'
   get '/createEvent', to: 'calendar#createEvent'
-  root 'users#signUp'
+  get '/addUser', to: 'admin#show'
+  post '/addUser', to: 'admin#addUser'
+  get '/approve', to: 'admin#showEvents'
+  post '/approve', to: 'admin#approveTimeOff'
+  get '/teamEvents', to: 'calendar#teamEvents'
+  get '/teamCalendar', to: 'calendar#teamCalendar'
+  root 'sessions#new'
   resources :users
 end

@@ -1,0 +1,8 @@
+<% provide(:title, 'Add User') %>
+<%= form_with(url: addUser_path, local: true) do |f| %>
+    <div style="width:60%" >
+        <%= f.label "Add User to your team"%>
+        <%=f.collection_select :add_user, @add_users, :user, :user%>
+        <%=f.submit "Add user"%>
+    </div>
+<% end %>

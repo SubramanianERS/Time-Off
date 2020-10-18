@@ -1,0 +1,21 @@
+<div class="col-md-10 col-md-offset-2">
+    <div class="form-inline">
+        <div class="form-group">
+            Add users
+        </div>
+        <div class="form-group">
+            <div class="dropdown">
+                <button class="dropdown-toggle" data-toggle="dropdown">
+                        Account <b class="caret"></b>
+                </button>
+                <ul class="dropdown-menu">
+                    <% @add_users.each do |oneUser| %>
+                        <li>
+                            <div><%= oneUser.user %></div>
+                        </li>
+                        <li class="divider"></li>
+                    <% end %>
+                </ul>
+        </div>
+    </div>
+</div>

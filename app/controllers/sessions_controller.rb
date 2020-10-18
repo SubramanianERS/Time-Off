@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
+    puts user.password_digest
     if user && user.authenticate(params[:session][:password])
       log_in user
       redirect_to "/calendar"

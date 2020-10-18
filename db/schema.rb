@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_15_072409) do
+ActiveRecord::Schema.define(version: 2020_10_16_063411) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string "admin"
+    t.string "user"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "title"
@@ -18,6 +25,8 @@ ActiveRecord::Schema.define(version: 2020_10_15_072409) do
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
+    t.boolean "is_approved"
   end
 
   create_table "holidays", force: :cascade do |t|
@@ -35,6 +44,7 @@ ActiveRecord::Schema.define(version: 2020_10_15_072409) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "employee_id"
+    t.boolean "is_admin"
   end
 
 end

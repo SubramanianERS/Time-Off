@@ -11,25 +11,43 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap-sprockets
+//= require bootstrap
+//= require rails-ujs
+//= require turbolinks
+//= require activestorage
+//= require_tree .
 //= require moment 
 //= require fullcalendar
-//= require rails-ujs
-//= require activestorage
-//= require turbolinks
 //= require bootstrap-datepicker
-//= require_tree .
-
-$('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
 
 function eventCalendar() {
     return $('#calendar').fullCalendar({
-        events: '/holidays.json',
+        events: window.location.pathname == '/calendar' || window.location.pathname == '/calendar/'
+            ? '/events.json' : 'teamEvents.json',
         selectable: true,
         initialView: 'dayGridMonth',
+        buttonText: {
+            today: 'Today',
+            month: 'Month',
+            week: 'Week',
+            day: 'Day',
+            list: 'List'
+        },
+        header: {
+            left: 'prevYear, prev, next, nextYear today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay,list'
+        },
+        displayEventTime : false,
         select: function (startDate, endDate) {
-            window.location.href = "/calendar/?create_event=true&startDate=" + new Date(startDate).toLocaleString()
-                + "&endDate=" + new Date(endDate).toLocaleString()
+            start = moment(startDate).format('YYYY/MM/DD');
+            today = moment().format('YYYY/MM/DD');
+            if (start >= today) {
+                if (window.location.pathname == '/calendar' || window.location.pathname == '/calendar/') {
+                    window.location.href = "/calendar/?create_event=true&startDate=" + moment(endDate).format('DD/MM/YYYY')
+                        + "&endDate=" + moment(endDate).format('DD/MM/YYYY')
+                }
+            }
         }
     });
 };

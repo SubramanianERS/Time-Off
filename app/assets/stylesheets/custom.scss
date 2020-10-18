@@ -1,6 +1,5 @@
-
-@import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-sprockets";
 
 $light-gray: #777;
 
@@ -34,4 +33,8 @@ input {
     .form-control {
         color: $state-danger-text;
     }
+}
+
+.fc-sun, .fc-sat { 
+    background-color: #d4cecb; 
 }

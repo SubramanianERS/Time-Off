@@ -1,0 +1,25 @@
+<% provide(:title,'Approve Time Off') %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Reason for Time Off</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Dates</th>
+      <th scope="col">Approve Time Off</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @events_to_be_approved.each do |one_event| %>      
+        <tr>
+            <td><%= one_event.title %></td>
+            <td><%= one_event.start_date %></td>
+            <td><%= one_event.end_date %></td>
+            <td>
+              <%= form_with(url: approve_path(event_id:one_event.id), mode: @post, local: true) do |f| %>
+                <%= f.submit "Approve", :class => 'btn btn-success' %>
+              <% end %>
+            </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
